@@ -21,7 +21,7 @@
 ## Day 2: AI Core Inference & Media Hydration Pipeline
 
 ### Structured LLM Synthesis
-* **Deterministic Schema Generation:** Transitioned from mock data to actual model evaluation by integrating the `google-genai` SDK (`v2.10.0`). Programmed the system to feed dynamic prompt inputs into the `gemini-2.5-pro` model.
+* **Deterministic Schema Generation:** Transitioned from mock data to actual model evaluation by integrating the `google-genai` SDK. Programmed the system to feed dynamic prompt inputs into the generative model layers.
 * **Zero-Variance System Structuring:** Configured a strict low-temperature constraint ($T = 0.3$) and locked the response mime-type to `application/json`, forcing the AI model to fit its response directly into our nested data layout:
   $$\text{CourseStructureResponse} \longrightarrow \text{ModuleItem} \longrightarrow \text{LessonItem} \longrightarrow \text{QuizItem}$$
 
@@ -33,5 +33,22 @@
 * **Registry Dependency Patching:** Diagnosed and corrected a critical build blocker caused by deprecated PyPI SDK pointers, successfully shifting image build configurations onto the active `google-genai==2.10.0` specification tracking array.
 * **Fault-Tolerant API Fallbacks:** Written a graceful dev-mode intercept inside the scraping module to capture missing or depleted environment api keys, maintaining continuous runtime pipeline operation even during quota limits.
 
+---
+
+## Day 3: Node.js Data Orchestration, Spec Modernization & State Persistence
+
+### Relational Schema Blueprinting
+* **Hybrid Document Modeling:** Engineered a granular Mongoose schema layout in the Node.js layer parsing directly from strict Pydantic outputs, structurally caching modules, lesson entities, and metadata blocks seamlessly.
+* **Transactional Query Optimization:** Affixed high-performance field indices over prompt attributes ensuring blazing-fast read lookups.
+
+### Cross-Container Ingress & Pipeline Resilience
+* **Internal Routing Channels:** Linked Express processing routers down into the hidden private bridge layer, abstracting connection pipelines using native container host targets (`http://AISERVICE:8000`).
+* **Regex Protection Layer:** Patched a critical validation crash by implementing an absolute character-escaping array on cache search checks, preventing special-character prompts (e.g., `"C++"`) from disrupting regular expression evaluation loops.
+* **Specification Modernization:** Removed the deprecated root `version` tag from `docker-compose.yml` to satisfy modern Compose Engine parsing guidelines and completely eliminate console warning overhead.
+
+### Model Optimization & Global Insulation Fail-Safe
+* **Token Ingestion Optimization:** Shifted core execution targeting from `gemini-2.5-pro` to the faster, high-quota `gemini-2.5-flash` model within `main.py` to leverage enhanced throughput bounds and reduce latency on structured JSON builds.
+* **Global Insulation Fail-Safe Interceptor:** Integrated a rigorous exception-catching interceptor in the `AISERVICE` layer. In the event of a `429 RESOURCE_EXHAUSTED` trigger or external quota depletion, the microservice immediately hot-swaps to an internally built, dynamically mapped fallback blueprint payload. This ensures the Day 3 end-to-end database pipeline never halts.
+
 ### Outcome
-The `AISERVICE` runtime layer is now capable of parsing unformatted raw prompts, generating mathematically validated course documents, and auto-hydrating them with live streaming URLs concurrently. Ready for Day 3 state-persistence and orchestrator bridge loops.
+The full data orchestration layer is successfully unified and hardened. User queries cleanly cycle through a robust regex validation intercept, resolve via an ultra-fast, high-quota model pipeline (or an automated data insulation fallback), and securely commit states directly into the persistent storage engine with transparent cache indicators. Ready for Day 4 frontend dashboard interface canvas construction.
